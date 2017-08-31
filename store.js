@@ -16,7 +16,8 @@ module.exports = store
 
 // register intents
 require('./intents/greeting')(store)
-
+require('./intents/info')(store)
+require('./intents/weather')(store)
 // register outbound services
 require('./outbound/sms')(store)
 

@@ -24,5 +24,11 @@ module.exports = ({ subscribe, dispatch, getState }) => {
 }
 
 function greeting() {
-  return `Hello There, what would you like to chat about?`
+  return `Hello There, what would you like to chat about?
+
+  trivia?
+  weather?
+  time?
+
+  `
 }

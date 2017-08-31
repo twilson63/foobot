@@ -1,7 +1,7 @@
 const { promisify } = require('util')
 const AWS = require('aws-sdk')
-const { replace, merge, when, equals } = require('ramda')
-const { READY } = require('../constants')
+const { replace, merge, when, equals, has, prop } = require('ramda')
+const { READY, SEND_MSG } = require('../constants')
 const { dispatch } = require('../store')
 
 const lex = new AWS.LexRuntime({
@@ -29,4 +29,15 @@ module.exports = data => async dispatch => {
       })
     })
   })(response.dialogState)
+
+  when(has, () => {
+    dispatch({
+      type: SEND_MSG,
+      payload: {
+        to: data.From,
+        from: data.To,
+        body: response.msg
+      }
+    })
+  })(prop('message', response))
 }
