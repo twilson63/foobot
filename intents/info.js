@@ -6,8 +6,9 @@ module.exports = ({ subscribe, dispatch, getState }) => {
   subscribe(() => {
     const { intent } = getState()
     when(equals(INFO), () => {
+      //console.log('action', intent)
       dispatch({ type: CLEAR_INTENT })
-      dispatch(info)
+      dispatch(info(intent))
     })(intent.type)
   })
 }
